@@ -37,7 +37,7 @@ class App extends Component {
             />
             <Route
               path="/tableRender/:objectId"
-              render={(matchUtil) => <SingleObject testData={testData} match={matchUtil.match} history={matchUtil.history} />}
+              render={(matchUtil) => <SingleObject testData={testData} match={matchUtil.match} history={matchUtil.history} />} //data={this.state.data}
             />
             <Route
               component={NoMatch}

@@ -96,11 +96,6 @@ export default class TableRender extends Component {
 
 
 /*
-make getData() work (DONE)
-
-make singlePerson work 
-    data={this.state.data}
-    turn it sideways
 
 add pagination (numbered .. uh numbers)
 add filter
