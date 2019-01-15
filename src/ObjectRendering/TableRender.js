@@ -107,6 +107,8 @@ export default class TableRender extends Component {
 /*
 
 add filter
-
+  const filterCountries = countriesPagination.filter((country) => {  
+        return this.state.appliedFilter === null || this.state.appliedFilter === country.region;
+      });
 
 */
