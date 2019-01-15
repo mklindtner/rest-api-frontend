@@ -10,3 +10,14 @@ export default function makeOptions(method, body) {
     }
     return opts;
 }
+
+export function authToken(method, token) {
+    let opts = {
+        method: method,
+        headers: {
+            "Content-type": "application/json",
+            "x-access-token": token
+        }
+    }
+    return opts;
+}

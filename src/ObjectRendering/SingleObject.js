@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 
 export default class SingleObject extends Component {
     constructor(props) {
         super(props);
-        this.state = ({ data: this.props.testData, object: {} });
+        this.state = ({
+            data: this.props.testData,
+            object: {},
+            flipTable: false
+        });
     }
 
     //unable to call this, why?
@@ -83,31 +87,29 @@ export default class SingleObject extends Component {
         return <td>{value}</td>;
     }
 
+    ChooseTable = () => {
+        return !this.state.flipTable ? <div>{this.RenderTable()}</div> : <div>{this.RenderTableSideWays()}</div>
+    }
+
+    ChangeTable = () => {
+        this.setState( prevState => ({
+            flipTable: !prevState.flipTable
+        }));     
+    }
+
     render() {
         this.findObject(); //this should be placed elsewhere
         if (!this.state.object)
             return (<div>object Not Found</div>);
         return (
-            <div>{this.RenderTableSideWays()}</div>
+            <div>
+                {this.ChooseTable()}
+                <Button onClick={(e) => this.ChangeTable()}>flipTable</Button> 
+            </div>
         );
     }
 }
+//unable to fix onClick
+//this.ChooseTable()
 //<div>{this.RenderTableSideWays()}</div>
-
-//<div>{this.RenderTable(this.state.data)}</div>
-
-/*
-<Table>
-                <tbody>
-                    <tr>
-                        <th>
-                            header
-                        </th>
-                        <td>
-                            smth
-                        </td>
-                    </tr>
-                </tbody>
-            </Table>
-
-*/
+//

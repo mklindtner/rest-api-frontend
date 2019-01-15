@@ -5,14 +5,15 @@ import TableRender from './ObjectRendering/TableRender';
 import SingleObject from './ObjectRendering/SingleObject';
 import testData from './Facade/TestData';
 import DataFacade from './Facade/DataFacade';
+import LoginForm from './Authentication/LoginForm';
+import User from './ObjectRendering/User';
 
 
 class App extends Component {
 
-  //use dataFacade here
   constructor(props) {
     super(props);
-    this.state = { data: [] }
+    this.state = { data: [], user: null }
   }
 
   async componentDidMount() {
@@ -20,12 +21,15 @@ class App extends Component {
     this.setState({ data: DataFacade.data });
   }
 
+  SetUser = (userInfo) => {
+    this.setState({ user: userInfo });
+  }
+
   render() {
     return (
       <Router>
         <div>
-          <Header />
-
+          <Header user={this.state.user}/>
           <Switch>
             <Route
               exact path="/"
@@ -40,6 +44,14 @@ class App extends Component {
               render={(matchUtil) => <SingleObject testData={testData} match={matchUtil.match} history={matchUtil.history} />} //data={this.state.data}
             />
             <Route
+              path="/authentication/loginForm"
+              component={(matchUtil) => <LoginForm SetUser={this.SetUser} match={matchUtil.match} history={matchUtil.history} />}
+            />
+            <Route
+              path="/user"
+              component={(matchUtil) => <User user={this.state.user} match={matchUtil.match} history={matchUtil.history} />}
+            />
+            <Route
               component={NoMatch}
             />
           </Switch>
@@ -49,17 +61,19 @@ class App extends Component {
   }
 }
 
-const Header = () => {
+const Header = ({user}) => {
   return (
     <ul className="header">
       <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
       <li><NavLink activeClassName="active" to="/tableRender">renderTable</NavLink></li>
+      <li><NavLink activeClassName="active" to="/authentication/loginForm">LoginForm</NavLink></li>
+      <li>{user && <NavLink activeClassName="active" to="/user">User</NavLink>}</li>
     </ul>
   );
 }
 
 const Home = () => {
-  return "hi hi hi";
+  return "Welcome to this page";
 }
 
 
