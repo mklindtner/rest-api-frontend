@@ -14,7 +14,7 @@ class UserFacade {
 
         //console.log(userInfo);
         return userInfo;
-    }
+    }    
 }
 
 //loggedObject["username"] = body.username;

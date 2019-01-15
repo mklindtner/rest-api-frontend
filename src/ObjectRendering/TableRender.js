@@ -12,7 +12,6 @@ export default class TableRender extends Component {
     }
 
     RenderTable = (data) => {
-        console.log(data);
         return (
             <Table>
                 <thead>
@@ -107,7 +106,6 @@ export default class TableRender extends Component {
 
 /*
 
-add pagination (numbered .. uh numbers) (DONE)
 add filter
 
 

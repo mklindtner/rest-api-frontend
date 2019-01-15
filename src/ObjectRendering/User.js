@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Button} from 'react-bootstrap';
 
 
 export default class User extends Component {
@@ -7,8 +8,11 @@ export default class User extends Component {
     }
 
     render() {
+
         return (
-            <div>{this.props.user}</div>
+            <div>
+                {this.props.user}
+            </div>
         );
     }
 }

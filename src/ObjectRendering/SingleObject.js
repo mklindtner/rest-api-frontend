@@ -58,7 +58,6 @@ export default class SingleObject extends Component {
 
     RenderTableSideWays = () => {
         let keys = Object.keys(this.state.object);
-        let values = Object.values(this.state.object);
         return (
             <Table>
                 <tbody>
@@ -106,7 +105,3 @@ export default class SingleObject extends Component {
         );
     }
 }
-//unable to fix onClick
-//this.ChooseTable()
-//<div>{this.RenderTableSideWays()}</div>
-//

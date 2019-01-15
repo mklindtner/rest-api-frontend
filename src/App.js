@@ -1,36 +1,41 @@
 import React, { Component } from 'react';
 import './App.css';
-import { HashRouter as Router, NavLink, Switch, Link, Route } from 'react-router-dom';
+import { HashRouter as Router, NavLink, Switch, Link, Route, Redirect } from 'react-router-dom';
 import TableRender from './ObjectRendering/TableRender';
 import SingleObject from './ObjectRendering/SingleObject';
 import testData from './Facade/TestData';
 import DataFacade from './Facade/DataFacade';
 import LoginForm from './Authentication/LoginForm';
 import User from './ObjectRendering/User';
+import { Table, Button } from 'react-bootstrap';
+
 
 
 class App extends Component {
-
   constructor(props) {
     super(props);
-    this.state = { data: [], user: null }
+    this.state = { data: [], user: null, redirect: "" }
   }
 
   async componentDidMount() {
     await DataFacade.getData();
-    //console.log(DataFacade.data[0].results);
-    this.setState({ data: DataFacade.data[0].results });
+    this.setState({ data: testData }); //DataFacade.data[0].results
   }
 
   SetUser = (userInfo) => {
     this.setState({ user: userInfo });
   }
 
-  render() {
+  Logout = () => {
+    this.setState({ user: null });
+    this.setState({ redirect: "/" }); //should be used
+  }
+
+  render() {   
     return (
       <Router>
         <div>
-          <Header user={this.state.user}/>
+          <Header user={this.state.user} Logout={this.Logout} />
           <Switch>
             <Route
               exact path="/"
@@ -38,11 +43,11 @@ class App extends Component {
             />
             <Route
               exact path="/tableRender"
-              render={(matchUtil) => <TableRender data={this.state.data} match={matchUtil.match} history={matchUtil.history}  />}
+              render={(matchUtil) => <TableRender data={this.state.data} match={matchUtil.match} history={matchUtil.history} />}
             />
             <Route
               path="/tableRender/:objectId"
-              render={(matchUtil) => <SingleObject data={this.state.data} match={matchUtil.match} history={matchUtil.history} />} 
+              render={(matchUtil) => <SingleObject data={this.state.data} match={matchUtil.match} history={matchUtil.history} />}
             />
             <Route
               path="/authentication/loginForm"
@@ -51,6 +56,9 @@ class App extends Component {
             <Route
               path="/user"
               component={(matchUtil) => <User user={this.state.user} match={matchUtil.match} history={matchUtil.history} />}
+            />
+            <Route
+              path="/user/logout"
             />
             <Route
               component={NoMatch}
@@ -62,13 +70,18 @@ class App extends Component {
   }
 }
 
-const Header = ({user}) => {
+const Header = ({ user, Logout }) => {
   return (
     <ul className="header">
       <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
       <li><NavLink activeClassName="active" to="/tableRender">renderTable</NavLink></li>
       <li><NavLink activeClassName="active" to="/authentication/loginForm">LoginForm</NavLink></li>
-      <li>{user && <NavLink activeClassName="active" to="/user">User</NavLink>}</li>
+      {user &&
+        <>
+          <li style={{ float: "right" }}><Button onClick={() => Logout()}>Logout</Button></li>
+          <li><NavLink activeClassName="active" to="/user">User</NavLink></li>
+        </>
+      }
     </ul>
   );
 }
