@@ -57,7 +57,7 @@ export default class TableRender extends Component {
                     );
                 })}
                 <td>
-                    <Button onClick={() => { history.push(`${match.url}/${singleRow.id}`) }}>details</Button>
+                    <Button onClick={() => { history.push(`${match.url}/${singleRow.name}`) }}>details</Button>
                 </td>
             </tr>
         );

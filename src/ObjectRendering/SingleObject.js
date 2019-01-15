@@ -5,9 +5,8 @@ export default class SingleObject extends Component {
     constructor(props) {
         super(props);
         this.state = ({
-            data: this.props.data,
             object: {},
-            flipTable: false
+            flipTable: true
         });
     }
 
@@ -16,8 +15,8 @@ export default class SingleObject extends Component {
     }
 
     findObject = () => {
-        this.state.data.forEach((obj) => {
-            if (obj.id == this.props.match.params.objectId && !Object.keys(this.state.object).length) //checks param and if object is empty
+        this.props.data.forEach((obj) => {
+            if (obj.name == this.props.match.params.objectId && !Object.keys(this.state.object).length) //checks param and if object is empty
                 this.setState({ object: obj })
         });
     }
