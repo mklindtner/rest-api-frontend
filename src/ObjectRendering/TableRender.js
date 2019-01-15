@@ -5,16 +5,18 @@ export default class TableRender extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: this.props.data, 
+            filter: null,
+            page: 1,
+            pageSize: 3
         };
-    }    
+    }
 
     RenderTable = (data) => {
-        const keysOfFirstItem = Object.keys(data[0]);
+        console.log(data);
         return (
             <Table>
                 <thead>
-                    {this.RenderHeaders(keysOfFirstItem)}
+                    {data.length > 0 && this.RenderHeaders(Object.keys(data[0]))}
                 </thead>
                 <tbody>
                     {this.RenderBody(data)}
@@ -74,30 +76,38 @@ export default class TableRender extends Component {
         }
     }
 
+    NextPage = () => {
+        this.setState(prevState => ({
+            page: ++prevState.page
+        }));
+    }
+
+    PreviousPage = () => {
+        this.setState(prevState => ({
+            page: --prevState.page
+        }));
+    }
+
 
     render() {
-        /*
-        if (this.state.data.length > 0) {
-            return (
-                <div>
-                    {this.RenderTable(this.props.testData)}
-                </div>
-            );
-        } else {
-            return (<div>hi</div>)
-        }*/
+        const currentPage = (this.state.page - 1);
+        const paginatedResult = this.props.data.slice(currentPage, this.state.pageSize + currentPage);
+
         return (
             <div>
-                {this.RenderTable(this.props.testData)}
+                {this.RenderTable(paginatedResult)}
+                <Button onClick={this.PreviousPage}>previous page</Button>
+                <Button onClick={this.NextPage}>next page</Button>
             </div>
         );
     }
 }
 
 
+
 /*
 
-add pagination (numbered .. uh numbers)
+add pagination (numbered .. uh numbers) (DONE)
 add filter
 
 

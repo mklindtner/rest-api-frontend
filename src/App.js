@@ -18,7 +18,8 @@ class App extends Component {
 
   async componentDidMount() {
     await DataFacade.getData();
-    this.setState({ data: DataFacade.data });
+    //console.log(DataFacade.data[0].results);
+    this.setState({ data: DataFacade.data[0].results });
   }
 
   SetUser = (userInfo) => {
@@ -37,11 +38,11 @@ class App extends Component {
             />
             <Route
               exact path="/tableRender"
-              render={(matchUtil) => <TableRender testData={testData} match={matchUtil.match} history={matchUtil.history} data={this.state.data} />}
+              render={(matchUtil) => <TableRender data={this.state.data} match={matchUtil.match} history={matchUtil.history}  />}
             />
             <Route
               path="/tableRender/:objectId"
-              render={(matchUtil) => <SingleObject testData={testData} match={matchUtil.match} history={matchUtil.history} />} //data={this.state.data}
+              render={(matchUtil) => <SingleObject data={this.state.data} match={matchUtil.match} history={matchUtil.history} />} 
             />
             <Route
               path="/authentication/loginForm"

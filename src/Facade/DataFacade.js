@@ -1,6 +1,7 @@
 import makeOptions from './Fetch';
 
-const URL = "http://localhost:8081/api/webdata/swapi/2/planets"; //remember http
+//const URL = "http://localhost:8081/api/webdata/swapi/2/planets"; //remember http
+const URL = "http://localhost:8081/api/webdata/swapi/planets";
 const URI = "";
 
 class DataFacade {

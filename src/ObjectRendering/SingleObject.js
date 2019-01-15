@@ -5,7 +5,7 @@ export default class SingleObject extends Component {
     constructor(props) {
         super(props);
         this.state = ({
-            data: this.props.testData,
+            data: this.props.data,
             object: {},
             flipTable: false
         });
@@ -23,8 +23,6 @@ export default class SingleObject extends Component {
     }
 
     RenderTable = (data) => {
-        //find singleObject
-        //const keys = Object.keys(data);
         let keys = Object.keys(this.state.object);
         return (
             <Table>
