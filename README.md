@@ -11,5 +11,10 @@ Provides a template for
 * dataFacade
 
 # Auth
-Example of a user login form
-A general authenthication facade
+* Example of a user login form
+* a general authenthication is provided facade
+
+# Tools
+* React / javascript
+* Routing 
+* Bootstrap
