@@ -8,5 +8,5 @@ Provides a template for
 * Table-rendering
 * Single object Rendering
 * Routing
-* dataFacade (if you want to use cache)
+* dataFacade
 
