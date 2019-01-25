@@ -6,7 +6,7 @@ Uses React version 6.5.0
 # ObjectRendering
 Provides a template for
 * Table-rendering
-         * Single object Rendering
-Routing
-dataFacade (if you want to use cache)
+* Single object Rendering
+* Routing
+* dataFacade (if you want to use cache)
 
