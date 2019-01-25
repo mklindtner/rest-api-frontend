@@ -1,4 +1,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## React
-Through react; table, headers, login (logic) and a dataFacade is provided. Exception handling is left up to the user.
+Uses React version 6.5.0
+
+# ObjectRendering
+Provides a template for:
+Table-rendering
+Single object Rendering
+Routing
+dataFacade (if you want to use cache)
+
