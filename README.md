@@ -10,3 +10,6 @@ Provides a template for
 * Routing
 * dataFacade
 
+# Auth
+Example of a user login form
+A general authenthication facade
