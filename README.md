@@ -2,6 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## React
 Uses React version 6.5.0
+Uses rest-api-backend and it's respective endpoints
 
 # ObjectRendering
 Provides a template for
